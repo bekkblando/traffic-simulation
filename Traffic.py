@@ -18,9 +18,10 @@ class Road:
     def create_road(self, size):
         return np.arange(size)
 
-    def check_car_pos(self, car):
-         
-         pass
+    def check_car_pos(self, check_car):
+        selected_car = [self.car_list[number] for number, item in enumerate(
+            self.car_list) if item[1] == check_car]
+        return selected_car
 
 
 class Car:
@@ -38,19 +39,19 @@ class Car:
         return "Car" + str(self.position)
 
     def accelerate(self):
-        pass
+        self.speed += 2
 
     def stop(self):
-        pass
+        self.speed = 0
 
     def slow(self):
-        pass
+        self.speed -= 2
 
     def move(self):
-        pass
+        self.position += self.speed
 
     def check_road(self):
-        pass
+        
 
     def track_progress(self):
         self.track.append(self.position)
@@ -58,4 +59,5 @@ class Car:
 road = Road()
 print(road.road)
 print(road.car_list)
-print(road.car_list[0])
+print(road.car_list[5])
+print(road.check_car_pos(0))
