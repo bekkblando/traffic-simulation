@@ -1,5 +1,5 @@
 import numpy as np
-
+import random
 
 class Road:
 
@@ -21,7 +21,8 @@ class Road:
     def check_car_pos(self, check_car):
         selected_car = [self.car_list[number] for number, item in enumerate(
             self.car_list) if item[1] == check_car]
-        return selected_car[0][1]
+        print(selected_car[0][1])
+        return selected_car[0]
 
 
 class Car:
@@ -35,8 +36,8 @@ class Car:
         self.track = []
         self.speed = 0
 
-    def __str__(self):
-        return "Car" + str(self.position)
+    """def __str__(self):
+        return str(self.position)"""
 
     def accelerate(self):
         self.speed += .4
@@ -62,12 +63,22 @@ print(road.car_list)
 print(road.car_list[5])
 print(road.check_car_pos(0))
 first_car = road.check_car_pos(0)
+print("First Car", first_car[0].position)
 second_car = road.check_car_pos(road.car_list[0][0].car_in_front())
-print(second_car - first_car)
+print("Second Car", second_car[0].position)
+distance = second_car[0].position - first_car[0].position
+print(distance)
 
 for car in road.car_list:
+    print("Car", car)
+    chance = random.randint(1, 10)
     first_car = car[0].position
-    second_car = road.check_car_pos(car.car_in_front())
+    second_car = road.check_car_pos(car[0].car_in_front())[0].position
     distance = second_car - first_car
     speed = car[0].speed * 5
-    if car[0].speed
+    if speed == distance:
+        pass
+    if chance == 1:
+        car[0].slow()
+    elif speed != 4800:
+        car[0].accelerate()
