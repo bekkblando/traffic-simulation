@@ -1,6 +1,7 @@
 import numpy as np
 import random
 
+
 class Road:
 
     def __init__(self, size=101, number_of_cars=50):
@@ -58,7 +59,7 @@ class Car:
         self.track.append(self.position)
 
 road = Road()
-print(road.road)
+"""print(road.road)
 print(road.car_list)
 print(road.car_list[5])
 print(road.check_car_pos(0))
@@ -68,17 +69,23 @@ second_car = road.check_car_pos(road.car_list[0][0].car_in_front())
 print("Second Car", second_car[0].position)
 distance = second_car[0].position - first_car[0].position
 print(distance)
+"""
 
-for car in road.car_list:
-    print("Car", car)
-    chance = random.randint(1, 10)
-    first_car = car[0].position
-    second_car = road.check_car_pos(car[0].car_in_front())[0].position
-    distance = second_car - first_car
-    speed = car[0].speed * 5
-    if speed == distance:
-        pass
-    if chance == 1:
-        car[0].slow()
-    elif speed != 4800:
-        car[0].accelerate()
+def run_sim():
+    for car in road.car_list:
+        print("Car", car)
+        chance = random.randint(1, 10)
+        first_car = car[0].position
+        try:
+            second_car = road.check_car_pos(car[0].car_in_front())[0].position
+            distance = second_car - first_car
+            speed = car[0].speed * 5
+            if speed == distance:
+                pass
+        except:
+            pass
+        if chance == 1:
+            car[0].slow()
+        elif speed != 4800:
+            car[0].accelerate()
+        car[0].track_progress()
