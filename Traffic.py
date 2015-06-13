@@ -71,21 +71,28 @@ distance = second_car[0].position - first_car[0].position
 print(distance)
 """
 
+
 def run_sim():
-    for car in road.car_list:
-        print("Car", car)
-        chance = random.randint(1, 10)
-        first_car = car[0].position
-        try:
-            second_car = road.check_car_pos(car[0].car_in_front())[0].position
-            distance = second_car - first_car
-            speed = car[0].speed * 5
-            if speed == distance:
+    datamine = []
+    for number in range(10):
+        for car in road.car_list:
+            print("Car", car)
+            chance = random.randint(1, 10)
+            first_car = car[0].position
+            try:
+                second_car = road.check_car_pos(car[0].car_in_front())[0].position
+                distance = second_car - first_car
+                speed = car[0].speed * 5
+                if speed == distance:
+                    pass
+            except:
                 pass
-        except:
-            pass
-        if chance == 1:
-            car[0].slow()
-        elif speed != 4800:
-            car[0].accelerate()
-        car[0].track_progress()
+            if chance == 1:
+                car[0].slow()
+            elif speed != 4800:
+                car[0].accelerate()
+            car[0].move()
+            car[0].track_progress()
+    return [car[0].track for car in road.car_list]
+
+print(run_sim())
