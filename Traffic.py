@@ -93,6 +93,7 @@ def run_sim():
                 car[0].accelerate()
             car[0].move()
             car[0].track_progress()
-    return [car[0].track for car in road.car_list]
+    return [car[0].track * 5 for car in road.car_list]
+
 
 print(run_sim())
