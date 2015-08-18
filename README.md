@@ -1,3 +1,4 @@
+Learning how to create and use Monte Carolo Simualations in addition to learning new plotting features.
 # Traffic simulation
 
 ## Description
